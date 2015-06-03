@@ -1,9 +1,7 @@
 #Geotagx-UNASIGN-sourcerer
-========================== 
 Generates/Syncs a tasks.csv (compatible with Pybossa) with UNASIGN data feeds
 
 #Usage
-====== 
 ```bash
 git clone -r https://github.com/geotagx/geotagx-UNASIGN-sourcerer.git
 cd geotagx-UNASIGN-sourcerer
@@ -12,5 +10,4 @@ python geotagx-unasign-sourcerer.py #Will both create and sync the tasks.csv wit
 ```
 
 #Author
-=======
 S.P. Mohanty <sp.mohanty@cern.ch>   
