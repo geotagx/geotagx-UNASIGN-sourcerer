@@ -1,5 +1,5 @@
 #Geotagx-UNASIGN-sourcerer
-Generates/Syncs a tasks.csv (compatible with Pybossa) with UNASIGN data feeds
+Generates/Syncs a tasks.csv (compatible with Pybossa) from the UNASIGN data feeds
 
 #Usage
 ```bash
