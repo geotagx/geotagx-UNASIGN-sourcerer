@@ -1,5 +1,6 @@
 #Geotagx-UNASIGN-sourcerer
-Generates/Syncs a tasks.csv (compatible with Pybossa) from the UNASIGN data feeds
+Generates/Syncs a tasks.csv (compatible with Pybossa) from the UNASIGN data feeds   
+and also pushes new unsees images to geotagx via geotagx-sourcerer-proxy
 
 #Usage
 ```bash
@@ -10,6 +11,9 @@ python geotagx-unasign-sourcerer.py
 # Will both create and sync the tasks.csv with the UNASIGN data feed in question
 # Will also push new unseen images to geotagx-sourcerer-proxy
 ```
+
+#Settings
+You can edit the feed_url to sync and the list of categories to push to in `settings.py`
 
 #Quick Tips
 You can setup a cronjob to run this at particular intervals to time to keep your project in sync with the UNASIGN data feed   
