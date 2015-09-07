@@ -1,7 +1,8 @@
 import feedparser
-import csv
+import csv, json, base64, urllib2
+from settings import CATEGORIES, TARGET_HOST, TARGET_URI, GEOTAGX_SOURCERER_TYPE, FEED_URL
 
-FEED_URL = "https://asign.cern.ch/resources/georss/nepal_crowd.xml"
+
 print "Attempting to download feed...."
 feed = feedparser.parse(FEED_URL)
 task_list_size = 0
@@ -61,6 +62,22 @@ for item in feed['entries']:
 
 		data_keys[_row['image_url']] = _row['id']
 		data_rows.append(row)
+
+		# Create Object for pushing to geotagx-sourcerer-proxy
+		_sourcerer_object = _row
+		_sourcerer_object['source'] = GEOTAGX_SOURCERER_TYPE
+		_sourcerer_object['type'] = "IMAGE_SOURCE"
+		_sourcerer_object['categories'] = CATEGORIES
+
+		# Push data via geotagx-sourcerer-proxy
+		ARGUMENTS = base64.b64encode(json.dumps(_sourcerer_object))
+		GEOTAGX_SOURCERER_PROXY_URL = TARGET_HOST+TARGET_URI+"?sourcerer-data="+ARGUMENTS;
+		print "Pushing Image to GeoTag-X Sourcerer Proxy : ", _sourcerer_object['image_url'],
+		try:
+			urllib2.urlopen(GEOTAGX_SOURCERER_PROXY_URL)
+			print " : SUCCESS"
+		except:
+			print " : FAILURE"
 	else:
 		print "Duplicate Entry found. Ignoring photo : %s " % (item['photo'])
 
